@@ -316,6 +316,29 @@ function Phases() {
     { n: "03", t: "Capacitação", d: "Treinamento prático de diretores e equipes operacionais de campo." },
     { n: "04", t: "Go-Live", d: "Início pleno das operações integradas e geração de relatórios estratégicos." },
   ];
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = trackRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = rect.height + vh * 0.6;
+      const passed = vh - rect.top;
+      const p = Math.max(0, Math.min(1, passed / total));
+      setProgress(p);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
     <section id="implantacao" className="py-24 border-t border-border/50">
       <div className="max-w-7xl mx-auto px-6">
@@ -324,23 +347,56 @@ function Phases() {
           <h2 className="font-display text-4xl md:text-5xl font-semibold mb-4">Segura, ágil e em 4 fases</h2>
           <p className="text-muted-foreground">Do setup ao primeiro relatório estratégico — com suporte dedicado em cada etapa.</p>
         </div>
-        <div className="grid md:grid-cols-4 gap-6">
-          {phases.map((p) => (
-            <div key={p.n} className="relative p-7 rounded-2xl bg-card border border-border">
-              <div className="font-display text-5xl text-gradient-gold font-semibold mb-3">{p.n}</div>
-              <h3 className="font-display text-xl font-semibold mb-2">{p.t}</h3>
-              <p className="text-sm text-muted-foreground">{p.d}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-12 p-8 rounded-2xl bg-card border border-primary/20 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between">
-          <div className="flex items-center gap-4">
-            <Trophy className="h-10 w-10 text-primary shrink-0" />
-            <p className="font-display text-2xl italic">
-              "Organização é a diferença entre uma eleição apertada e uma vitória sólida."
-            </p>
+        <div ref={trackRef} className="relative">
+          {/* Progress line — horizontal on desktop, vertical on mobile */}
+          <div className="hidden md:block absolute top-12 left-[12.5%] right-[12.5%] h-[2px] bg-border/60 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-gradient-gold transition-[width] duration-300 ease-out"
+              style={{ width: `${progress * 100}%` }}
+            />
+          </div>
+          <div className="md:hidden absolute top-0 bottom-0 left-6 w-[2px] bg-border/60 rounded-full overflow-hidden">
+            <div
+              className="w-full bg-gradient-gold transition-[height] duration-300 ease-out"
+              style={{ height: `${progress * 100}%` }}
+            />
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6 relative">
+            {phases.map((p, i) => {
+              const active = progress > i / phases.length;
+              return (
+                <Reveal key={p.n} delay={i * 120}>
+                  <div className="relative md:pt-8">
+                    {/* node on the line */}
+                    <div
+                      className={`hidden md:flex absolute -top-1 left-1/2 -translate-x-1/2 h-5 w-5 rounded-full items-center justify-center transition-all duration-500 ${
+                        active ? "bg-gradient-gold shadow-gold scale-100" : "bg-card border border-border scale-90"
+                      }`}
+                    >
+                      <span className={`h-1.5 w-1.5 rounded-full ${active ? "bg-primary-foreground" : "bg-muted-foreground"}`} />
+                    </div>
+                    <div className="p-7 rounded-2xl bg-card border border-border hover:border-primary/40 transition h-full">
+                      <div className="font-display text-5xl text-gradient-gold font-semibold mb-3">{p.n}</div>
+                      <h3 className="font-display text-xl font-semibold mb-2">{p.t}</h3>
+                      <p className="text-sm text-muted-foreground">{p.d}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
+        <Reveal>
+          <div className="mt-12 p-8 rounded-2xl bg-card border border-primary/20 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between">
+            <div className="flex items-center gap-4">
+              <Trophy className="h-10 w-10 text-primary shrink-0" />
+              <p className="font-display text-2xl italic">
+                "Organização é a diferença entre uma eleição apertada e uma vitória sólida."
+              </p>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
