@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import {
   Smartphone, BarChart3, Map, MessageCircle, ShieldCheck, Users,
   WifiOff, Sparkles, Trophy, CalendarCheck, ArrowRight, Check,
@@ -6,6 +7,9 @@ import {
 } from "lucide-react";
 import logo from "@/assets/atlas-logo.png.asset.json";
 import heroBg from "@/assets/atlas-hero-bg.jpg";
+import { Reveal } from "@/components/Reveal";
+import { CountUp } from "@/components/CountUp";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -87,16 +91,22 @@ function Hero() {
             </a>
           </div>
           <div className="mt-12 grid grid-cols-3 gap-6 max-w-md">
-            {[
-              { v: "100%", l: "Offline-first" },
-              { v: "5", l: "Papéis RBAC" },
-              { v: "LGPD", l: "Compliance total" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-display text-3xl text-gradient-gold font-semibold">{s.v}</div>
-                <div className="text-xs text-muted-foreground mt-1">{s.l}</div>
+            <div>
+              <div className="font-display text-3xl text-gradient-gold font-semibold">
+                <CountUp to={100} suffix="%" />
               </div>
-            ))}
+              <div className="text-xs text-muted-foreground mt-1">Offline-first</div>
+            </div>
+            <div>
+              <div className="font-display text-3xl text-gradient-gold font-semibold">
+                <CountUp to={5} />
+              </div>
+              <div className="text-xs text-muted-foreground mt-1">Papéis RBAC</div>
+            </div>
+            <div>
+              <div className="font-display text-3xl text-gradient-gold font-semibold animate-pulse">LGPD</div>
+              <div className="text-xs text-muted-foreground mt-1">Compliance total</div>
+            </div>
           </div>
         </div>
         <div className="relative flex justify-center">
@@ -124,14 +134,16 @@ function Pillars() {
           <p className="text-muted-foreground">Quatro frentes integradas que transformam intuição em decisão baseada em dados reais.</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((it) => (
-            <div key={it.title} className="group relative p-8 rounded-2xl bg-card border border-border hover:border-primary/50 transition shadow-elegant">
-              <div className="h-12 w-12 rounded-xl bg-gradient-gold flex items-center justify-center mb-5 shadow-gold">
-                <it.icon className="h-6 w-6 text-primary-foreground" />
+          {items.map((it, i) => (
+            <Reveal key={it.title} delay={i * 100}>
+              <div className="group relative h-full p-8 rounded-2xl bg-card border border-border hover:border-primary/50 hover:-translate-y-1 hover:shadow-gold transition-all duration-300 shadow-elegant">
+                <div className="h-12 w-12 rounded-xl bg-gradient-gold flex items-center justify-center mb-5 shadow-gold group-hover:scale-110 transition-transform">
+                  <it.icon className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <h3 className="font-display text-xl font-semibold mb-2">{it.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{it.desc}</p>
               </div>
-              <h3 className="font-display text-xl font-semibold mb-2">{it.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{it.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -218,24 +230,26 @@ function Features() {
           <p className="text-muted-foreground">Da porta-em-porta ao gabinete: uma plataforma única, integrada e segura.</p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {groups.map((g) => (
-            <div key={g.title} className="p-7 rounded-2xl bg-card border border-border hover:border-primary/40 transition">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="h-10 w-10 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center">
-                  <g.icon className="h-5 w-5 text-primary" />
+          {groups.map((g, i) => (
+            <Reveal key={g.title} delay={(i % 3) * 100}>
+              <div className="h-full p-7 rounded-2xl bg-card border border-border hover:border-primary/50 hover:-translate-y-1 hover:shadow-gold transition-all duration-300">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="h-10 w-10 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center">
+                    <g.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <span className="text-xs uppercase tracking-widest text-primary font-semibold">{g.tag}</span>
                 </div>
-                <span className="text-xs uppercase tracking-widest text-primary font-semibold">{g.tag}</span>
+                <h3 className="font-display text-2xl font-semibold mb-4">{g.title}</h3>
+                <ul className="space-y-3">
+                  {g.bullets.map((b) => (
+                    <li key={b} className="flex gap-3 text-sm text-muted-foreground">
+                      <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="font-display text-2xl font-semibold mb-4">{g.title}</h3>
-              <ul className="space-y-3">
-                {g.bullets.map((b) => (
-                  <li key={b} className="flex gap-3 text-sm text-muted-foreground">
-                    <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
 
@@ -302,6 +316,29 @@ function Phases() {
     { n: "03", t: "Capacitação", d: "Treinamento prático de diretores e equipes operacionais de campo." },
     { n: "04", t: "Go-Live", d: "Início pleno das operações integradas e geração de relatórios estratégicos." },
   ];
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = trackRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = rect.height + vh * 0.6;
+      const passed = vh - rect.top;
+      const p = Math.max(0, Math.min(1, passed / total));
+      setProgress(p);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
     <section id="implantacao" className="py-24 border-t border-border/50">
       <div className="max-w-7xl mx-auto px-6">
@@ -310,23 +347,56 @@ function Phases() {
           <h2 className="font-display text-4xl md:text-5xl font-semibold mb-4">Segura, ágil e em 4 fases</h2>
           <p className="text-muted-foreground">Do setup ao primeiro relatório estratégico — com suporte dedicado em cada etapa.</p>
         </div>
-        <div className="grid md:grid-cols-4 gap-6">
-          {phases.map((p) => (
-            <div key={p.n} className="relative p-7 rounded-2xl bg-card border border-border">
-              <div className="font-display text-5xl text-gradient-gold font-semibold mb-3">{p.n}</div>
-              <h3 className="font-display text-xl font-semibold mb-2">{p.t}</h3>
-              <p className="text-sm text-muted-foreground">{p.d}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-12 p-8 rounded-2xl bg-card border border-primary/20 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between">
-          <div className="flex items-center gap-4">
-            <Trophy className="h-10 w-10 text-primary shrink-0" />
-            <p className="font-display text-2xl italic">
-              "Organização é a diferença entre uma eleição apertada e uma vitória sólida."
-            </p>
+        <div ref={trackRef} className="relative">
+          {/* Progress line — horizontal on desktop, vertical on mobile */}
+          <div className="hidden md:block absolute top-12 left-[12.5%] right-[12.5%] h-[2px] bg-border/60 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-gradient-gold transition-[width] duration-300 ease-out"
+              style={{ width: `${progress * 100}%` }}
+            />
+          </div>
+          <div className="md:hidden absolute top-0 bottom-0 left-6 w-[2px] bg-border/60 rounded-full overflow-hidden">
+            <div
+              className="w-full bg-gradient-gold transition-[height] duration-300 ease-out"
+              style={{ height: `${progress * 100}%` }}
+            />
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6 relative">
+            {phases.map((p, i) => {
+              const active = progress > i / phases.length;
+              return (
+                <Reveal key={p.n} delay={i * 120}>
+                  <div className="relative md:pt-8">
+                    {/* node on the line */}
+                    <div
+                      className={`hidden md:flex absolute -top-1 left-1/2 -translate-x-1/2 h-5 w-5 rounded-full items-center justify-center transition-all duration-500 ${
+                        active ? "bg-gradient-gold shadow-gold scale-100" : "bg-card border border-border scale-90"
+                      }`}
+                    >
+                      <span className={`h-1.5 w-1.5 rounded-full ${active ? "bg-primary-foreground" : "bg-muted-foreground"}`} />
+                    </div>
+                    <div className="p-7 rounded-2xl bg-card border border-border hover:border-primary/40 transition h-full">
+                      <div className="font-display text-5xl text-gradient-gold font-semibold mb-3">{p.n}</div>
+                      <h3 className="font-display text-xl font-semibold mb-2">{p.t}</h3>
+                      <p className="text-sm text-muted-foreground">{p.d}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
+        <Reveal>
+          <div className="mt-12 p-8 rounded-2xl bg-card border border-primary/20 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between">
+            <div className="flex items-center gap-4">
+              <Trophy className="h-10 w-10 text-primary shrink-0" />
+              <p className="font-display text-2xl italic">
+                "Organização é a diferença entre uma eleição apertada e uma vitória sólida."
+              </p>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
