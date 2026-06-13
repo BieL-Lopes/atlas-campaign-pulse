@@ -5,7 +5,7 @@ import {
   WifiOff, Sparkles, Trophy, CalendarCheck, ArrowRight, Check,
   Database, Bell, FileSpreadsheet, Globe2,
 } from "lucide-react";
-import logo from "@/assets/atlas-logo.png.asset.json";
+import logo from "@/assets/atlas-logo.png";
 import heroBg from "@/assets/atlas-hero-bg.jpg";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "ATLAS — Uma Nova Forma de Fazer Política" },
       { property: "og:description", content: "Plataforma de gestão eleitoral com captura offline, dashboards em tempo real, IA de campanha e automação WhatsApp." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: logo.url },
+      { property: "og:image", content: logo },
     ],
     links: [{ rel: "preconnect", href: "https://fonts.googleapis.com" }, { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" }],
   }),
@@ -46,7 +46,7 @@ function Nav() {
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-3">
-          <img src={logo.url} alt="ATLAS" className="h-9 w-9 rounded-full ring-1 ring-primary/40" />
+          <img src={logo} alt="ATLAS" className="h-9 w-9 rounded-full ring-1 ring-primary/40" />
           <span className="font-display text-xl tracking-wide text-gradient-gold font-semibold">ATLAS</span>
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
@@ -111,7 +111,7 @@ function Hero() {
         </div>
         <div className="relative flex justify-center">
           <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full" />
-          <img src={logo.url} alt="ATLAS — Logo" className="relative w-full max-w-md rounded-3xl shadow-elegant ring-1 ring-primary/30" />
+          <img src={logo} alt="ATLAS — Logo" className="relative w-full max-w-md rounded-3xl shadow-elegant ring-1 ring-primary/30" />
         </div>
       </div>
     </section>
@@ -432,7 +432,7 @@ function Footer() {
     <footer className="py-12 border-t border-border">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <img src={logo.url} alt="" className="h-8 w-8 rounded-full ring-1 ring-primary/40" />
+          <img src={logo} alt="" className="h-8 w-8 rounded-full ring-1 ring-primary/40" />
           <span className="font-display text-lg text-gradient-gold font-semibold">ATLAS</span>
           <span className="text-xs text-muted-foreground ml-2">© {new Date().getFullYear()} — Inteligência política.</span>
         </div>
