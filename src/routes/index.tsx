@@ -230,24 +230,26 @@ function Features() {
           <p className="text-muted-foreground">Da porta-em-porta ao gabinete: uma plataforma única, integrada e segura.</p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {groups.map((g) => (
-            <div key={g.title} className="p-7 rounded-2xl bg-card border border-border hover:border-primary/40 transition">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="h-10 w-10 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center">
-                  <g.icon className="h-5 w-5 text-primary" />
+          {groups.map((g, i) => (
+            <Reveal key={g.title} delay={(i % 3) * 100}>
+              <div className="h-full p-7 rounded-2xl bg-card border border-border hover:border-primary/50 hover:-translate-y-1 hover:shadow-gold transition-all duration-300">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="h-10 w-10 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center">
+                    <g.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <span className="text-xs uppercase tracking-widest text-primary font-semibold">{g.tag}</span>
                 </div>
-                <span className="text-xs uppercase tracking-widest text-primary font-semibold">{g.tag}</span>
+                <h3 className="font-display text-2xl font-semibold mb-4">{g.title}</h3>
+                <ul className="space-y-3">
+                  {g.bullets.map((b) => (
+                    <li key={b} className="flex gap-3 text-sm text-muted-foreground">
+                      <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="font-display text-2xl font-semibold mb-4">{g.title}</h3>
-              <ul className="space-y-3">
-                {g.bullets.map((b) => (
-                  <li key={b} className="flex gap-3 text-sm text-muted-foreground">
-                    <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
 
