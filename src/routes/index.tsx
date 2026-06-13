@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import {
   Smartphone, BarChart3, Map, MessageCircle, ShieldCheck, Users,
   WifiOff, Sparkles, Trophy, CalendarCheck, ArrowRight, Check,
@@ -6,6 +7,9 @@ import {
 } from "lucide-react";
 import logo from "@/assets/atlas-logo.png.asset.json";
 import heroBg from "@/assets/atlas-hero-bg.jpg";
+import { Reveal } from "@/components/Reveal";
+import { CountUp } from "@/components/CountUp";
+import { useInView } from "@/hooks/use-in-view";
 
 export const Route = createFileRoute("/")({
   head: () => ({
