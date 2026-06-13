@@ -91,16 +91,22 @@ function Hero() {
             </a>
           </div>
           <div className="mt-12 grid grid-cols-3 gap-6 max-w-md">
-            {[
-              { v: "100%", l: "Offline-first" },
-              { v: "5", l: "Papéis RBAC" },
-              { v: "LGPD", l: "Compliance total" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-display text-3xl text-gradient-gold font-semibold">{s.v}</div>
-                <div className="text-xs text-muted-foreground mt-1">{s.l}</div>
+            <div>
+              <div className="font-display text-3xl text-gradient-gold font-semibold">
+                <CountUp to={100} suffix="%" />
               </div>
-            ))}
+              <div className="text-xs text-muted-foreground mt-1">Offline-first</div>
+            </div>
+            <div>
+              <div className="font-display text-3xl text-gradient-gold font-semibold">
+                <CountUp to={5} />
+              </div>
+              <div className="text-xs text-muted-foreground mt-1">Papéis RBAC</div>
+            </div>
+            <div>
+              <div className="font-display text-3xl text-gradient-gold font-semibold animate-pulse">LGPD</div>
+              <div className="text-xs text-muted-foreground mt-1">Compliance total</div>
+            </div>
           </div>
         </div>
         <div className="relative flex justify-center">
