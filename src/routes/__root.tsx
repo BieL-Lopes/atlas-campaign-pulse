@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import logoUrl from "@/assets/atlas-logo.png";
 
 function NotFoundComponent() {
   return (
@@ -91,6 +92,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/006dde52-eca9-4be0-977a-4da73162a6cc/id-preview-01add245--4c4827ba-2ca1-404e-a85f-649882dd740b.lovable.app-1781360566939.png" },
     ],
     links: [
+      {
+        rel: "icon",
+        type: "image/png",
+        href: logoUrl,
+      },
+      {
+        rel: "apple-touch-icon",
+        href: logoUrl,
+      },
       {
         rel: "stylesheet",
         href: appCss,
