@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Atlas" },
+      { name: "description", content: "Atlas: Your Campaign Compass is a political CRM for Brazilian campaigns, offering offline-first PWA functionality." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Atlas" },
+      { property: "og:description", content: "Atlas: Your Campaign Compass is a political CRM for Brazilian campaigns, offering offline-first PWA functionality." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Atlas" },
+      { name: "twitter:description", content: "Atlas: Your Campaign Compass is a political CRM for Brazilian campaigns, offering offline-first PWA functionality." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/006dde52-eca9-4be0-977a-4da73162a6cc/id-preview-01add245--4c4827ba-2ca1-404e-a85f-649882dd740b.lovable.app-1781360566939.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/006dde52-eca9-4be0-977a-4da73162a6cc/id-preview-01add245--4c4827ba-2ca1-404e-a85f-649882dd740b.lovable.app-1781360566939.png" },
     ],
     links: [
       {
