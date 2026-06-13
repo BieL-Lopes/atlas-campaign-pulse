@@ -9,7 +9,7 @@ import logo from "@/assets/atlas-logo.png.asset.json";
 import heroBg from "@/assets/atlas-hero-bg.jpg";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
-import { useInView } from "@/hooks/use-in-view";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
