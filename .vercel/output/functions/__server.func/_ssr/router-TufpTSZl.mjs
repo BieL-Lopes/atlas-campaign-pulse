@@ -99,6 +99,15 @@ const Route$1 = createRootRouteWithContext()({
     ],
     links: [
       {
+        rel: "icon",
+        type: "image/png",
+        href: "/favicon.ico"
+      },
+      {
+        rel: "apple-touch-icon",
+        href: "/favicon.ico"
+      },
+      {
         rel: "stylesheet",
         href: appCss
       }
@@ -123,7 +132,7 @@ function RootComponent() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) });
 }
 const logo = "/assets/atlas-logo-c9cq05tn.png";
-const $$splitComponentImporter = () => import("./index-Dw-71L6h.mjs");
+const $$splitComponentImporter = () => import("./index-DDM-C5ue.mjs");
 const Route = createFileRoute("/")({
   head: () => ({
     meta: [{
