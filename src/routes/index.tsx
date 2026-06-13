@@ -55,8 +55,8 @@ function Nav() {
           <a href="#comparativo" className="hover:text-primary transition">Comparativo</a>
           <a href="#implantacao" className="hover:text-primary transition">Implantação</a>
         </nav>
-        <a href="#contato" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-gold text-primary-foreground text-sm font-semibold shadow-gold hover:opacity-90 transition">
-          Agendar demo <ArrowRight className="h-4 w-4" />
+        <a href="https://atlas-eleitoral.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-gold text-primary-foreground text-sm font-semibold shadow-gold hover:opacity-90 transition">
+          Demo <ArrowRight className="h-4 w-4" />
         </a>
       </div>
     </header>
@@ -83,8 +83,8 @@ function Hero() {
             ATLAS transforma o trabalho de campo em dados estratégicos. CRM eleitoral offline-first, com geo-inteligência, IA de campanha e automação de WhatsApp em conformidade total com a LGPD.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="#contato" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-gold text-primary-foreground font-semibold shadow-gold hover:scale-[1.02] transition">
-              Solicitar demonstração <ArrowRight className="h-4 w-4" />
+            <a href="https://atlas-eleitoral.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-gold text-primary-foreground font-semibold shadow-gold hover:scale-[1.02] transition">
+              Demo <ArrowRight className="h-4 w-4" />
             </a>
             <a href="#recursos" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border text-foreground hover:bg-secondary transition">
               Conhecer recursos
@@ -415,8 +415,8 @@ function CTA() {
           Agende uma demonstração em tempo real e veja como o ATLAS pode transformar sua operação política em uma máquina de dados.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <a href="mailto:contato@atlas.app" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-gold text-primary-foreground font-semibold shadow-gold hover:scale-[1.02] transition">
-            Agendar demonstração <ArrowRight className="h-4 w-4" />
+          <a href="https://atlas-eleitoral.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-gold text-primary-foreground font-semibold shadow-gold hover:scale-[1.02] transition">
+            Demo <ArrowRight className="h-4 w-4" />
           </a>
           <a href="#recursos" className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-border hover:bg-secondary transition">
             Ver recursos
